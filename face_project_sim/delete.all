@@ -1,0 +1,17 @@
+import os
+import numpy as np
+import json
+
+DB_DIR = "local_db"
+EMBEDDINGS_FILE = os.path.join(DB_DIR, "embeddings.npy")
+PROFILES_FILE = os.path.join(DB_DIR, "profiles.json")
+
+# Reset embeddings
+empty_embeddings = np.empty((0, 512))
+np.save(EMBEDDINGS_FILE, empty_embeddings)
+
+# Reset profiles
+with open(PROFILES_FILE, "w", encoding="utf-8") as f:
+    json.dump([], f, indent=4)
+
+print("✅ Database cleared successfully!")
